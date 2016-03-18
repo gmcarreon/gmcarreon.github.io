@@ -1,7 +1,6 @@
 ﻿body, html
 {
     /*background-color: #EDEDED !important;*/
-	background-color: #b0bec5 !important;
 }
 
 /*
@@ -44,15 +43,16 @@
 .intro
 {
     text-align: center;
-    padding-top: 10%;
-    padding-bottom: 10%;
+    padding-top: 15%;
+    padding-bottom: 25%;
     margin-bottom: 50px;
-    background-color:#333333;
-    /*background-image: url(../images/banner.jpg);*/
+    background-image: url(../images/banner.png);
     background-repeat: no-repeat;
     background-size: cover !important;
+    opacity: 1;
+    z-index: 999px;
+    clear: both;
 }
-
 .header-intro{
     text-align: center;
     padding-bottom: 5%;
@@ -71,9 +71,11 @@
 }
 
 .intro h2{
-    font-weight: 150;
+    font-size: 2rem;
+    color: white;
+    font-weight: bold;
     text-transform: none;
-    font-family:'Lucida Handwriting'; 
+    font-family:'Century gothic'; 
 }
 .intro h5
 {
@@ -89,9 +91,8 @@
 .about .col
 {
     margin-bottom: 24px;
-    display: none;
+    /*display: none;*/
 }
-
 .about h5
 {
     text-align: center;
@@ -172,6 +173,7 @@
     font-family:'Helvetica';
     margin-bottom: 15px;
     padding-top: 20px;
+    color:#26a69a;
 }
 
 .contact h6
