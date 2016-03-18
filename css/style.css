@@ -1,7 +1,7 @@
 ﻿body, html
 {
     /*background-color: #EDEDED !important;*/
-	background-color: #F4F4F4; !important;
+	background-color: #b0bec5 !important;
 }
 
 /*
@@ -44,11 +44,19 @@
 .intro
 {
     text-align: center;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 10%;
+    padding-bottom: 10%;
     margin-bottom: 50px;
+    background-color:#333333;
+    /*background-image: url(../images/banner.jpg);*/
+    background-repeat: no-repeat;
+    background-size: cover !important;
 }
 
+.header-intro{
+    text-align: center;
+    padding-bottom: 5%;
+}
 .profile-pic
 {
 	width:64px;
@@ -62,6 +70,11 @@
 	font-family:'Cordia New';  
 }
 
+.intro h2{
+    font-weight: 150;
+    text-transform: none;
+    font-family:'Lucida Handwriting'; 
+}
 .intro h5
 {
     text-transform: uppercase;
@@ -76,6 +89,7 @@
 .about .col
 {
     margin-bottom: 24px;
+    display: none;
 }
 
 .about h5
@@ -153,9 +167,11 @@
 
 .contact h5
 {
-    text-align: center;
-    text-transform: uppercase;
+    text-align: left;
+    text-transform: none;
+    font-family:'Helvetica';
     margin-bottom: 15px;
+    padding-top: 20px;
 }
 
 .contact h6
@@ -167,8 +183,7 @@
 
 .contact hr
 {
-    width: 40px;
-    margin-bottom: 45px;
+    width: 100%;
 }
 
 .contact .contact-holder
@@ -179,19 +194,30 @@
 
 .contact .contact-holder h6
 {
-    margin-bottom: 15px;
+
+    color:#909E9E;
+    margin-bottom: 5px;
     text-align: left;
 }
 
 .contact .contact-holder p
 {
-    margin-bottom: 30px;
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+.contact .contact-holder p a
+{
+    transition: transform 0.5s;
+}
+.contact .contact-holder p a:hover
+{
+    transform: rotate(360deg);
 }
 footer
 {
     padding-top: 0px;
 	background-color:#333333;
-	height:100px;
+	height:100%;
 }
 
 .contact-holder a.fb-icon
