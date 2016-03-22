@@ -1,16 +1,23 @@
 ﻿$(document).ready(function () {
- 
+ 	
     $('materialboxed').materialbox();
 
-    
     $('.parallax').parallax();
 
     $("#submit").click(function () {
-        alert("asd");
+        alert("Not yet Functioning");
     });
-    
-    /*
+
+
     $(window).scroll(function() { 
-    	$('.col').fadeIn(1000);
-	});*/
+
+    	var yad = document.getElementById("body");
+    	var y = yad.scrollTop;
+
+    	if(y >=750){
+    		$('.card').fadeIn(1000);
+    	}else if(y < 700){
+    		$('.card').fadeOut(1000);
+    	}
+	});
 });
