@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title></title>
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css"  media="screen,projection"/>-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" />
+    <link type="text/css" rel="stylesheet" href="css/font-awesome/font-awesome-animation.css" />
+    <link type="text/css" rel="stylesheet" href="css/font-awesome/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Form1" runat="server"><asp:ContentPlaceHolder ID="MainContent" runat="server"/></form>
+    <div class="section">
+        <!--PUT DETAILS HERE -->
+    </div>
+        <div class="fixed-action-btn click-to-toggle" style="bottom: 80%; left: 24px;">
+            <a class="btn-floating btn-large red">
+              <i class="material-icons">menu</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating modal-trigger tooltipped" href="#who" data-position="right" data-delay="50" data-tooltip="Who am I?"><i class="medium fa fa-male faa-pulse animated faa-slow"></i><label><br />Who am I?</label></a></li>
+                <li><a class="btn-floating red modal-trigger tooltipped" href="#indust" data-position="right" data-delay="50" data-tooltip="Industry"><i class="medium fa fa-industry faa-passing animated faa-slow"></i><label><br />Industry</label></a></li>
+                <li><a class="btn-floating orange modal-trigger tooltipped" href="#expert" data-position="right" data-delay="50" data-tooltip="Expertise"><i class="medium fa fa-keyboard-o faa-tada animated faa-slow"></i><label><br />Expertise</label></a></li>
+                <li><a class="btn-floating green modal-trigger tooltipped" href="#contact" data-position="right" data-delay="50" data-tooltip="Contact Me"><i class="medium fa fa-envelope-o faa-shake animated faa-slow"></i><label><br />Contact Me</label></a></li>
+                <li><a class="btn-floating blue modal-trigger tooltipped" href="../portfolio/Gerald Carreon.pdf" target="_blank" data-position="right" data-delay="50" data-tooltip="My Resume"><i class="medium fa fa-file-pdf-o faa-bounce animated"></i><label><br />My Resume</label></a></li>
+            </ul>
+        </div>
+    <!--<hr /><br />-->
+    <!--<button id="authorize-button" class="btn btn-primary hidden">Authorize</button>-->
+    <div class="container about">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="row main-nav">
+                    <div class="col s6 m3 l3 center-align">
+                        <a class="modal-trigger tooltipped" href="#who" data-position="bottom" data-delay="50" data-tooltip="Who am I?"><i class="teal-text text-lighten-1 medium fa fa-male faa-pulse animated faa-slow"></i></a>
+                    </div>
+                    <div class="col s6 m3 l3 center-align">
+                        <a class="modal-trigger tooltipped" href="#indust" data-position="bottom" data-delay="50" data-tooltip="Industry"><i class="red-text medium fa fa-industry faa-passing animated faa-slow"></i></a>
+                    </div>
+                    <div class="col s6 m3 l3  center-align">
+                        <a class="modal-trigger tooltipped" href="#expert" data-position="bottom" data-delay="50" data-tooltip="Expertise"><i class="orange-text medium fa fa-keyboard-o faa-tada animated faa-slow"></i></a>
+                    </div> 
+                    <div class="col s6 m3 l3 center-align">
+                        <a class="modal-trigger tooltipped" href="#contact" data-position="bottom" data-delay="50" data-tooltip="Contact Me"><i class="green-text medium fa fa-envelope-o faa-shake animated faa-slow"></i></a>
+                    </div>
+                    <div class="col s6 m3 l3 center-align">
+                        <a class="modal-trigger tooltipped" href="../portfolio/Gerald Carreon.pdf" target="_blank" data-position="bottom" data-delay="50" data-tooltip="My Resume"><i class="blue-text medium fa fa-file-pdf-o faa-bounce animated"></i></a>                        
+                    </div>
+                </div>
+                <!-------------------------------MODALS------------------------------------------->
+
+                <!--====================================START WHO====================================-->
+                <div id="who" class="modal transparent">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat"><i class="material-icons">input</i></a>
+                    <div class="modal-content white-text">
+                        <img src="images/gerald.jpg" class="profile-pic"/>
+                        <h4 class="header">Who am i?</h4>
+                        <p>I'm just a boy that is passionate in software development that has eagerness in learning something new. Also, an open source person that able to adapt new methodologies according to the development procedures.</p>
+                        <p>I’m developing systems that utilizes optimized object oriented patterns. By the used of my thoughts and willingness in my passion, I’ve come up to develop my own game using Unity cross-platform game engine and different systems that requires good analytic and logical thinking personality.</p>
+                        <p class="grey-text text-darken-3 lighten-3"></p>
+                    </div>
+                </div>
+                <!--====================================END WHO====================================-->
+
+                <!--====================================START CONTACT====================================-->
+                <div id="contact" class="modal bottom-sheet">
+                    <div class="modal-content">
+                        <footer>
+                            <div class="container contact">
+                                <h5>Contact Me</h5>
+                                <div class="row">
+                                    <div class="col s12 m6 l6">
+                                        <div class="row">
+                                            <form class="col s12" onsubmit="return sendEmail();">
+                                                <div class="modal-body">
+                                                    <div class="form-group input-field col s12">
+                                                        <input type="email" class="form-control" id="compose-to" style="color:black;" required />
+                                                        <label for="compose-to">Email:</label>
+                                                    </div>
+
+                                                    <div class="form-group input-field col s12">
+                                                        <input type="text" class="form-control" id="compose-subject" style="color:black;" required />
+                                                        <label for="compose-subject">Subject:</label>
+                                                    </div>
+
+                                                    <div class="form-group  input-field col s12">
+                                                        <textarea class="form-control materialize-textarea" id="compose-message" rows="10" style="color:black;" required></textarea>
+                                                        <label for="compose-message">Your Message:</label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col s8">
+                                                            <button type="submit" id="Button1" class="btn btn-primary left">Send Email</button>
+                                                            <!--<div class="preloader-wrapper small active right">
+                                                                <div class="spinner-layer spinner-green-only">
+                                                                    <div class="circle-clipper left">
+                                                                        <div class="circle"></div>
+                                                                    </div>
+                                                                    <div class="gap-patch">
+                                                                        <div class="circle"></div>
+                                                                    </div>
+                                                                    <div class="circle-clipper right">
+                                                                        <div class="circle"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>-->
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l6 contact-holder">
+                                        <div class="input-field col s12 address">
+                                            <h6 class="mdi-action-home"> Address</h6>
+                                            <p>B4 L78 Apitong St. Cristina Home Zabarte Rd. Caloocan City</p>
+                                            <hr/>
+                                        </div>
+                                        <div class="input-field col s12 number">
+                                            <h6 class="mdi-hardware-phone-android"> Phone Number</h6>
+                                            <p>+64 9261519083</p>
+                                            <hr/>
+                                        </div>
+                                        <div class="input-field col s12 social">
+                                            <h6 class="mdi-action-open-in-browser"> Social Media's</h6>
+                                            <p>
+                                                <a href="https://www.facebook.com/ge.yad.ge" target="_blank" class="fb-icon icon-setup"></a>
+                                                <a href="https://www.linkedin.com/in/gerald-carreon-378a89bb?" target="_blank" class="linkedin-icon icon-setup"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+                <!--====================================END CONTACT====================================-->
+
+                <!--====================================START INDUSTRY====================================-->
+                <div id="indust" class="modal transparent">
+                    <div class="modal-content">
+                        
+                        <div class="card small">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="images/monde.png">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">Collabera Solutions (Monde Nissin)<i class="material-icons right">more_vert</i></span>
+                                <p>Software Developer/Programmer</p>
+                                <p><a href="http://epo.mondenissin.com/live" target="_blank">epo.mondenissin.com/live</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">April 27, 2016 - September 26, 2016 (5 months)<i class="material-icons right">close</i></span>
+                                <p>Developed Electronic Purchasing Order (ePO)</p>
+                                <p>- EPO is a mapping system for the customers of Monde Nissin Corporation that uses different file format such as pdf files, txt files, xls files csv files, htm files, etc. EPO converts the file content into a JSON format to read and organize the data according to the customer's orders. It has also the capability of sending data to another system using web services(API).</p>
+                                <p>• Developed using C#.NET, ASP.NET, css3 (bootstrap framework), javascript, ajax, jquery, HTML5 and RESTful web API Services.</p>
+                                <p>• Used Microsoft SQL Express 2008 for the storage of all the data or simply called, Database.</p>
+                            </div>
+                        </div>
+                        <div class="card small">
+                            <div class="card-image waves-effect waves-block waves-light">
+                                <img class="activator" src="images/amellar.png">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title activator grey-text text-darken-4">Amellar Solutions<i class="material-icons right">more_vert</i></span>
+                                <p>Software Development - Programmer</p>
+                                <p><a href="http://www.amellar.com" target="_blank">www.amellar.com</a></p>
+                            </div>
+                            <div class="card-reveal">
+                                <span class="card-title grey-text text-darken-4">July 20, 2015 - March 31, 2016 (8 months)<i class="material-icons right">close</i></span>
+                                <p>• Providing IT solutions for the local government units such as Business Permit and Licensing (BPLS), Real Property Tax (RPTA), Amellar Revenue Collection (aRCS) and Update application systems associated with Philippine Legal Codes</p>
+                                <p>• Used C#.NET, ADO.NET, VC++, Crystal Report, VSPrinter, ODBC and Oracle Database</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====================================END INDUSTRY====================================-->
+
+                <!--====================================START EXPERTISE====================================-->
+                <div id="expert" class="modal">
+                    <div class="modal-content">
+                        <h4 class="header">What can i do?</h4>
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">web</i>Web development</div>
+                                <div class="collapsible-body">
+                                    <p>• ASP.NET, C#.NET</p>
+                                    <p>• Web API Services</p>
+                                    <p>• Javascript, Ajax, JQuery, JSON</p>
+                                    <p>• CSS 3</p>
+                                    <p>• HTML 5</p>
+                                    <p>• MVC 3</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">airplay</i>Desktop application development</div>
+                                <div class="collapsible-body">
+                                    <p>• C# .NET, ADO.NET</p>
+                                    <p>• VC++</p>
+                                    <p>• XAML, WPF</p>
+                                    <p>• Java</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">clear_all</i>Database</div>
+                                <div class="collapsible-body">
+                                    <p>• MSSQL</p>
+                                    <p>• Oracle</p>
+                                    <p>• MySQL</p>
+                                    <p>• DB2</p>
+                                    <p>• RDBMS, ODBC</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">print</i>Reporting tools</div>
+                                <div class="collapsible-body">
+                                    <p>• Crystal Report</p>
+                                    <p>• VSPrinter</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="collapsible-header"><i class="material-icons">perm_media</i>Projects</div>
+                                <div class="collapsible-body">
+                                    <!--<div class="slider">
+                                        <ul class="slides">
+                                            <li>
+                                                <img src="images/projects/epo.png">
+                                                <div class="caption center-align">
+                                                    <h3>Electronic Purchasing Order (ePO)</h3>
+                                                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <img src="images/projects/">
+                                                <div class="caption left-align">
+                                                    <h3>Left Aligned Caption</h3>
+                                                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <img src="images/projects/">
+                                                <div class="caption right-align">
+                                                    <h3>Right Aligned Caption</h3>
+                                                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <img src="images/projects/"> 
+                                                <div class="caption center-align">
+                                                    <h3>This is our big Tagline!</h3>
+                                                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>-->
+                                </div>
+                            </li>
+                        </ul>
+                        <!--<div class="row">
+                            <div class="col s12">
+                                <ul class="tabs">
+                                    <li class="tab col s3"><a href="#test1">Web development</a></li>
+                                    <li class="tab col s3"><a class="active" href="#test2">Desktop App.</a></li>
+                                    <li class="tab col s3"><a href="#test3">Database</a></li>
+                                    <li class="tab col s3"><a href="#test4">Report tools</a></li>
+                                </ul>
+                            </div>
+                        </div>-->
+                    </div>
+                </div>
+                <!--====================================END EXPERTISE====================================-->
+
+                <!-------------------------------MODALS------------------------------------------->
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var clientId = '840119513930-gle4dk4dl1ohl1dvefutm87ojj40auvf.apps.googleusercontent.com';
+        var apiKey = 'AIzaSyCV_CdM5Td7ZW1n6pqddDbloEJf1cIJx6Q';
+        var scopes = 'https://www.googleapis.com/auth/gmail.readonly ' + 'https://www.googleapis.com/auth/gmail.send';
+
+        function handleClientLoad() {
+            gapi.client.setApiKey(apiKey);
+            window.setTimeout(checkAuth, 1);
+        }
+        function checkAuth() {
+            gapi.auth.authorize({
+                client_id: clientId,
+                scope: scopes,
+                immediate: true
+            }, handleAuthResult);
+        }
+        function handleAuthClick() {
+            gapi.auth.authorize({
+                client_id: clientId,
+                scope: scopes,
+                immediate: false
+            }, handleAuthResult);
+            return false;
+        }
+        function handleAuthResult(authResult) {
+            if (authResult && !authResult.error) {
+                loadGmailApi();
+                $('#authorize-button').remove();
+                $('.table-inbox').removeClass("hidden");
+            } else {
+                $('#authorize-button').removeClass("hidden");
+                $('#authorize-button').on('click', function () {
+                    handleAuthClick();
+                });
+            }
+        }
+        function loadGmailApi() {
+            gapi.client.load('gmail', 'v1', displayInbox);
+        }
+        function displayInbox() {
+            var request = gapi.client.gmail.users.messages.list({
+                'userId': 'me',
+                'labelIds': 'INBOX',
+                'maxResults': 10
+            });
+            request.execute(function (response) {
+                $.each(response.messages, function () {
+                    var messageRequest = gapi.client.gmail.users.messages.get({
+                        'userId': 'me',
+                        'id': this.id
+                    });
+                    messageRequest.execute(appendMessageRow);
+                });
+            });
+        } 
+    </script>
+    <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="Scripts/materialize.js" type="text/javascript"></script>
+    <script src="Scripts/material.js" type="text/javascript"></script>
+</body>
+</html>
+
+
+
+    <!--
+        <div class="card grey lighten-2" id="hideable">
+                    <div class="card-content white-text">
+                    <img src="images/gerald.jpg" class="profile-pic"/>
+                    <p>Gerald Carreon</p>
+                    </div>
+                    <div class="card-action z-depth-5">
+                    <ul class="collapsible">
+                        <li class="active">
+                        <div class="collapsible-header blue darken-1"><i class="mdi-social-person"></i>Personal Information</div>
+                        <div class="collapsible-body">
+                            <p>Age: 21</p>
+                            <p>Gender: Male</p>
+                            <p>Civil Status: Single</p>
+                            <p>Birhday: September 24,1994</p>
+                            <p>Motto: Take care of your employee, They will take care the client</p>
+                        </div>
+                        </li>
+                        <li>
+                        <div class="collapsible-header blue darken-1"><i class="mdi-hardware-computer"></i>Desktop Applications</div>
+                        <div class="collapsible-body">
+                            <p>C#.NET</p>
+                            <p>ADO.NET</p>
+                            <p>Visual Studio</p>
+                            <p>VC++</p>
+                            <p>WPF</p>
+                            <p>Java</p>
+                        </div>
+                        </li>
+                        <li>
+                        <div class="collapsible-header blue darken-1"><i class="mdi-av-web"></i>Web Applications</div>
+                        <div class="collapsible-body">
+                            <p>HTML5</p>
+                            <p>CSS</p>
+                            <p>PHP</p>
+                            <p>JavaScript</p>
+                            <p>ASP.NET</p>
+                            <p>Wordpress</p>
+                            <p>Adobe Photoshop</p>
+                        </div>
+                        </li>
+                        <li>
+                        <div class="collapsible-header blue darken-1"><i class="mdi-device-storage"></i>Databases</div>
+                        <div class="collapsible-body">
+                            <p>Oracle</p>
+                            <p>MySQL</p>
+                            <p>DB2</p>
+                        </div>
+                        </li>
+                        <li>
+                        <div class="collapsible-header blue darken-1"><i class="mdi-action-print"></i>Report Tools</div>
+                        <div class="collapsible-body">
+                            <p>Crystal Report</p>
+                            <p>VSPrinter</p>
+                        </div>
+                        </li>
+                    </ul>
+                    </div>
+                </div>
+    -->
