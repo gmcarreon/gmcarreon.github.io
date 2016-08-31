@@ -6,7 +6,7 @@
     display: block;
     height:100%;
     width:100%;
-    overflow:hidden;
+    overflow:auto;
     background:url('../images/bgc.png');
 }
 .header{
@@ -286,7 +286,14 @@ footer
 {
     background-color:transparent !important;    
 }
-
+.modal-expertise
+{
+    width:80% !important;    
+}
+.modal-who
+{
+    box-shadow:0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 2px 55px 0 rgba(0, 0, 0, 0.51) !important;
+}
 @media only screen and (min-width: 993px) 
 {
     .about .l3
@@ -304,7 +311,15 @@ footer
     {
         display:block;    
     }   
+    .container-chart
+    {
+        margin:150px auto !important;
+    }
 }
 
-
-
+.container-chart
+{
+    width:65%;
+    height:100px;
+    margin:0 auto;
+}

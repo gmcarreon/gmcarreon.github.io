@@ -8205,13 +8205,13 @@ button.btn-floating {
   width: 55px;
   text-align: center;
   position: absolute;
-  bottom: -464px;
+  bottom: -360px;
   margin: 0;
   visibility: hidden;
 }
 
 .fixed-action-btn ul li {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .fixed-action-btn ul a.btn-floating {
