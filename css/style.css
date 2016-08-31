@@ -316,6 +316,9 @@ footer
     {
         margin:150px auto !important;
     }
+}
+@media only screen and (max-width: 650px)
+{
     .modal.bottom-sheet
     {
         overflow:auto;
