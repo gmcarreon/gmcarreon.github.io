@@ -284,6 +284,7 @@ footer
 }
 .modal.bottom-sheet
 {
+    overflow:hidden;
     background-color:transparent !important;    
 }
 .modal-expertise
@@ -314,6 +315,10 @@ footer
     .container-chart
     {
         margin:150px auto !important;
+    }
+    .modal.bottom-sheet
+    {
+        overflow:auto;
     }
 }
 
