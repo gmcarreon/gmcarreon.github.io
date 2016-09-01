@@ -1,7 +1,6 @@
-﻿var click = 0;
+﻿$(document).ready(function () {
 
-$(document).ready(function () {
-
+    $('#likes').text('1000'+' Likes ');
     $('.modal-trigger').leanModal();
     $('ul.tabs').tabs();
 
@@ -16,23 +15,21 @@ $(document).ready(function () {
 
     $('.slider').slider({ full_width: false });
     $('#expert-mob').click(function(){
-        if (click == 0) {
-            click++;
+        
+        if($('#canvas').length != 0){
+            $('.container-chart div').remove();
+        }else{
             $('.container-chart').append('<div><canvas id="canvas"></canvas></div>');
-            renderChart();
-        } else {
-            $('.container-chart div').remove();    
-            click = 0;
+            barChart();
         }
     });
     $('#expert').click(function () {
-        if (click == 0) {
-            click++;
+        
+        if($('#canvas').length != 0){
+            $('.container-chart div').remove();
+        }else{
             $('.container-chart').append('<div><canvas id="canvas"></canvas></div>');
-            renderChart();
-        } else {
-            $('.container-chart div').remove();    
-            click = 0;
+            barChart();
         }
     });
 
@@ -40,13 +37,25 @@ $(document).ready(function () {
         if(e.keyCode == 27){
             if($('#canvas').length != 0){
                 $('.container-chart div').remove();
-                click = 0;
             }
         }
     });
+
+    $('.modal-trigger').click(function(e){
+        var s = this.href.split('/');
+        var target = s[s.length-1];
+
+        if($('#canvas').length != 0){
+            $('.container-chart div').remove();
+        }
+
+        if(target == '#who'){
+            $('.modal-who div .data-who.right .container-radarchart div').remove();
+            $('.modal-who div .data-who.right .container-radarchart').append('<div><canvas id="radarChart" width="500" height="260" style="position:absolute;left:48%;"></div>');
+            radarChart();
+        }
+    });
     
-    //$('.carousel').carousel();
-    //$('.carousel.carousel-slider').carousel({ full_width: true });
 });
 
 function resume(){
@@ -64,7 +73,61 @@ function resume(){
     printWindow = window.open('curriculum.html', '', 'left=' + left + ',top=' + top + ',width=' + w + ',height=' + h + ',status=0');
 }
 
-function renderChart() { 
+function radarChart(){
+    var radarOptions = {		
+	    scaleOverlay : false,
+	    scaleOverride : false,
+	    scaleSteps : null,
+	    scaleStepWidth : null,
+	    scaleStartValue : null,
+	    scaleShowLine : true,
+	    scaleLineColor : "#999",
+	    scaleLineWidth : 1,
+	    scaleShowLabels : false,
+	    scaleLabel : "<%=value%>",
+	    scaleFontFamily : "'Arial'",
+	    scaleFontSize : 12,
+	    scaleFontStyle : "normal",
+	    scaleFontColor : "#666",
+	    scaleShowLabelBackdrop : true,
+	    scaleBackdropColor : "rgba(255,255,255,1)",
+	    scaleBackdropPaddingY : 2,
+	    scaleBackdropPaddingX : 2,
+	    angleShowLineOut : true,
+	    angleLineColor : "rgba(255,255,255,0.3)",
+	    angleLineWidth : 1,			
+	    pointLabelFontFamily : "'Arial'",
+	    pointLabelFontStyle : "normal",
+	    pointLabelFontSize : 12,
+	    pointLabelFontColor : "#EFEFEF",
+	    pointDot : true,
+	    pointDotRadius : 3,
+	    pointDotStrokeWidth : 1,
+	    datasetStroke : true,
+	    datasetStrokeWidth : 1,
+	    datasetFill : true,
+	    animation : true,
+	    animationSteps : 60,
+	    animationEasing : "easeOutQuart",
+	    onAnimationComplete : null
+	
+    }
+
+    var radarData = {
+	    labels : ["Web development","Desktop Application","Database","Reporting Tools","Animation","Coding","Designing"],
+	    datasets : [
+		    {
+			    fillColor : "rgba(151,187,205,0.5)",
+			    strokeColor : "rgba(151,187,205,1)",
+			    data : [83,90,76,40,63,90,45]
+		    }
+	    ]
+    }
+    var ctx = document.getElementById("radarChart").getContext("2d");
+    var myRadarChart = new Chart(ctx).Radar(radarData, radarOptions);
+}
+
+function barChart() { 
     var dData = function () {
         return Math.round(Math.random() * 5)
     };
@@ -74,7 +137,7 @@ function renderChart() {
         datasets: [{
             fillColor: 'rgba(255, 99, 132, .4)',
             strokeColor: 'rgba(255, 206, 86, 1)',
-            data: [9, 7, 9, 8, 10, 9, 8, 10, 6, 9, 9, 8, 5],
+            data: [4, 2, 4, 3, 5, 4, 3, 5, 1, 4, 4, 3, 2.5],
         }]
     }
 
@@ -83,7 +146,7 @@ function renderChart() {
         animation: true,
         responsive: true,
         scaleOverride: true,
-        scaleSteps: 10,
+        scaleSteps: 5,
         scaleStartValue: 0,
         scaleStepWidth: 1,
         scaleFontColor: "white",

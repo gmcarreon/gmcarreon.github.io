@@ -134,7 +134,8 @@
 .about .card
 {
     display: inline-block;
-    width: 100%;
+    width: 48%;
+    margin: 0 auto;
 }
 /*
 .about .card img
@@ -278,7 +279,7 @@ footer
 {
     height:70px;    
 }
-.fixed-action-btn
+.fixed-action-btn.menu
 {
     display:none;    
 }
@@ -294,6 +295,13 @@ footer
 .modal-who
 {
     box-shadow:0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 2px 55px 0 rgba(0, 0, 0, 0.51) !important;
+    width:70% !important;
+    overflow:hidden;
+}
+.modal-ind
+{
+    box-shadow:0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 2px 55px 0 rgba(0, 0, 0, 0.51) !important;
+    width:70% !important;    
 }
 @media only screen and (min-width: 993px) 
 {
@@ -308,13 +316,25 @@ footer
     {
         display:none;
     }
-    .fixed-action-btn
+    .fixed-action-btn.menu
     {
         display:block;    
     }   
     .container-chart
     {
         margin:150px auto !important;
+    }
+    .data-who
+    {
+        width:100% !important;
+    }
+    #radarChart
+    {
+        left:10% !important; 
+    }
+    .modal-who
+    {
+        overflow-y:auto;
     }
 }
 @media only screen and (max-width: 650px)
@@ -324,10 +344,24 @@ footer
         overflow:auto;
     }
 }
-
 .container-chart
 {
+    display:block;
+    width:60%;
+    height:auto;
+    margin:0 auto;
+}
+.container-chart div
+{
+    float:left;
+    display:inline-block;
+    width:100% !important;   
+    
+    box-shadow:0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 2px 55px 0 rgba(0, 0, 0, 0.51) !important;
+}
+.container-radarchart
+{
     width:65%;
-    height:100px;
+    height:300px;
     margin:0 auto;
 }
