@@ -135,7 +135,7 @@ function barChart() {
     var barChartData = {
         labels: ["C#.NET", "ASP.NET", "HTML", "CSS", "JavaScript", "Ajax", "JQuery", "JSON", "VC++", "MSSQL", "Oracle DB", "MySQL","RESTful API"],
         datasets: [{
-            fillColor: 'rgba(255, 99, 132, .4)',
+            fillColor: 'transparent',
             strokeColor: 'rgba(255, 206, 86, 1)',
             data: [4, 2, 4, 3, 5, 4, 3, 5, 1, 4, 4, 3, 2.5],
         }]
