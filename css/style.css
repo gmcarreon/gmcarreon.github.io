@@ -336,7 +336,13 @@ footer
     {
         overflow-y:auto;
     }
+    .about .card
+    {
+        width: 100% !important;
+        margin-top:20px;
+    }
 }
+
 @media only screen and (max-width: 650px)
 {
     .modal.bottom-sheet
