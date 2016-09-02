@@ -43,7 +43,8 @@
     });
 
     $('.modal-trigger').click(function(e){
-        
+    	
+        history.pushState({},null,window.location.href.replace('?',''));
         var s = this.href.split('/');
         var target = s[s.length-1];
 
