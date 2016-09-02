@@ -59,7 +59,7 @@
         }
         if(target == '#sign-in'){
             if(localStorage.length != 0){
-                //$('#sign-in .modal-content .chip').remove();
+                $('#sign-in .modal-content .chip').remove();
                 for(var a=0,b=localStorage.length;a<b;a++){
                     var s = localStorage[a].split(',');
                     $('#sign-in .modal-content').append('<div class="chip" style="margin:5px;"><img src="'+s[0]+'" alt="Person Liked">'+s[1]+'</div>');
