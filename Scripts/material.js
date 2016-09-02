@@ -43,7 +43,7 @@
     });
 
     $('.modal-trigger').click(function(e){
-    	
+        
         history.pushState({},null,window.location.href.replace('?',''));
         var s = this.href.split('/');
         var target = s[s.length-1];
@@ -59,10 +59,10 @@
         }
         if(target == '#sign-in'){
             if(localStorage.length != 0){
-                $('#sign-in .modal-content .chip').remove();
+                //$('#sign-in .modal-content .chip').remove();
                 for(var a=0,b=localStorage.length;a<b;a++){
                     var s = localStorage[a].split(',');
-                    $('#sign-in .modal-content').append('<div class="chip"><img src="'+s[0]+'" alt="Person Liked">'+s[1]+'</div>');
+                    $('#sign-in .modal-content').append('<div class="chip" style="margin:5px;"><img src="'+s[0]+'" alt="Person Liked">'+s[1]+'</div>');
                 }
             }
         }
@@ -92,7 +92,7 @@ function onSignIn(googleUser) {
 
         setTimeout(function(){
             var arrData = localStorage[localStorage.length-1].split(',');
-            $('#sign-in .modal-content').append('<div class="chip"><img src="'+arrData[0]+'" alt="Person Liked">'+arrData[1]+'</div>');
+            $('#sign-in .modal-content').append('<div class="chip" style="margin:5px;"><img src="'+arrData[0]+'" alt="Person Liked">'+arrData[1]+'</div>');
         },1000);
 
         $('#likes').text(localStorage.length+' Likes ');
