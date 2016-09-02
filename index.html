@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-<head id="Head1" runat="server">
+<head>
     <title>Gerald Carreon | geralcarreon24@gmail.com</title>
 
     <link rel="shortcut icon" href="images/source.png">
@@ -9,8 +9,10 @@
     <link type="text/css" rel="stylesheet" href="css/font-awesome/font-awesome-animation.css" />
     <link type="text/css" rel="stylesheet" href="css/font-awesome/font-awesome.min.css" />
     <link type="text/css" rel="stylesheet" href="css/style.css" />
-    
+
+    <meta name="google-signin-client_id" content="840119513930-gle4dk4dl1ohl1dvefutm87ojj40auvf.apps.googleusercontent.com">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 </head>
 <body>
     <div class="section">
@@ -31,10 +33,10 @@
     </div>
     <div class="fixed-action-btn click-to-toggle" style="bottom: 5%; right: 40px; width:140px;">
         <p class="white-text" style="display:inline-block;" id="likes"></p>
-        <a class="btn-floating btn-large transparent" title="Like" href="#" ><i class="medium fa fa-thumbs-o-up faa-bounce animated faa-slow"></i></a>
+        <a id="modal-sign-in" class="btn-floating btn-large modal-trigger transparent" title="Like" href="#sign-in" ><i class="medium fa fa-thumbs-o-up faa-bounce animated faa-slow"></i></a>
     </div>
-    <!--<hr /><br />-->
-    <!--<button id="authorize-button" class="btn btn-primary hidden">Authorize</button>-->
+    <!--<hr /><br />
+    <button id="authorize-button" class="btn btn-primary hidden">Authorize</button>-->
     <div class="container about">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -57,6 +59,21 @@
 
                 </div>
                 <!-------------------------------MODALS------------------------------------------->
+
+                <!--====================================START GMAIL====================================-->
+                <div id="sign-in" class="modal transparent modal-like">
+                    <div class="modal-content">
+                    <h4 class="header">Sign-in to Google</h4>
+                        <!--<div class="chip">
+                            <img src="images/bgc.png" alt="Contact Person">
+                            Jane Doe
+                        </div>-->
+                    </div>
+                    <div class="modal-footer transparent">
+                        <div class="g-signin2 right" data-onsuccess="onSignIn"></div>
+                    </div>
+                </div>
+                <!--====================================END GMAIL====================================-->
 
                 <!--====================================START WHO====================================-->
                 <div id="who" class="modal transparent modal-who">
@@ -89,7 +106,7 @@
                                 <div class="row">
                                     <div class="col s12 m6 l6">
                                         <div class="row">
-                                            <form class="col s12" onsubmit="return sendEmail();">
+                                            <form class="col s12" onsubmit="sendEmail();" method="POST">
                                                 <div class="modal-body">
                                                     <div class="form-group input-field col s12">
                                                         <input type="email" class="form-control white-text" id="compose-to" style="color:black;" required />
@@ -107,7 +124,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col s8">
-                                                            <button type="submit" id="Button1" class="btn btn-primary left">Send Email</button>
+                                                            <button type="submit" id="send-button" class="btn btn-primary left">Send Email</button>
                                                             <!--<div class="preloader-wrapper small active right">
                                                                 <div class="spinner-layer spinner-green-only">
                                                                     <div class="circle-clipper left">
@@ -177,7 +194,7 @@
                         </div>
                         <div class="card small right">
                             <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="images/amellar.PNG">
+                                <img class="activator" src="images/amellar.png">
                             </div>
                             <div class="card-content">
                                 <span class="card-title activator grey-text text-darken-4">Amellar Solutions<i class="material-icons right">more_vert</i></span>
@@ -285,63 +302,7 @@
                 <!--<canvas id="canvas"></canvas>-->
         </div>
     </div>
-
-    <script type="text/javascript">
-        var clientId = '840119513930-gle4dk4dl1ohl1dvefutm87ojj40auvf.apps.googleusercontent.com';
-        var apiKey = 'AIzaSyCV_CdM5Td7ZW1n6pqddDbloEJf1cIJx6Q';
-        var scopes = 'https://www.googleapis.com/auth/gmail.readonly ' + 'https://www.googleapis.com/auth/gmail.send';
-
-        function handleClientLoad() {
-            gapi.client.setApiKey(apiKey);
-            window.setTimeout(checkAuth, 1);
-        }
-        function checkAuth() {
-            gapi.auth.authorize({
-                client_id: clientId,
-                scope: scopes,
-                immediate: true
-            }, handleAuthResult);
-        }
-        function handleAuthClick() {
-            gapi.auth.authorize({
-                client_id: clientId,
-                scope: scopes,
-                immediate: false
-            }, handleAuthResult);
-            return false;
-        }
-        function handleAuthResult(authResult) {
-            if (authResult && !authResult.error) {
-                loadGmailApi();
-                $('#authorize-button').remove();
-                $('.table-inbox').removeClass("hidden");
-            } else {
-                $('#authorize-button').removeClass("hidden");
-                $('#authorize-button').on('click', function () {
-                    handleAuthClick();
-                });
-            }
-        }
-        function loadGmailApi() {
-            gapi.client.load('gmail', 'v1', displayInbox);
-        }
-        function displayInbox() {
-            var request = gapi.client.gmail.users.messages.list({
-                'userId': 'me',
-                'labelIds': 'INBOX',
-                'maxResults': 10
-            });
-            request.execute(function (response) {
-                $.each(response.messages, function () {
-                    var messageRequest = gapi.client.gmail.users.messages.get({
-                        'userId': 'me',
-                        'id': this.id
-                    });
-                    messageRequest.execute(appendMessageRow);
-                });
-            });
-        } 
-    </script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="Scripts/materialize.js" type="text/javascript"></script>

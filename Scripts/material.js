@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
-
-    $('#likes').text('1000'+' Likes ');
+    
+    localStorage.length == 1 ? $('#likes').text(localStorage.length+' Like ') : $('#likes').text(localStorage.length+' Likes ');
+    
     $('.modal-trigger').leanModal();
     $('ul.tabs').tabs();
 
@@ -42,6 +43,7 @@
     });
 
     $('.modal-trigger').click(function(e){
+        
         var s = this.href.split('/');
         var target = s[s.length-1];
 
@@ -54,9 +56,47 @@
             $('.modal-who div .data-who.right .container-radarchart').append('<div><canvas id="radarChart" width="500" height="260" style="position:absolute;left:48%;"></div>');
             radarChart();
         }
-    });
-    
+        if(target == '#sign-in'){
+            if(localStorage.length != 0){
+                $('#sign-in .modal-content .chip').remove();
+                for(var a=0,b=localStorage.length;a<b;a++){
+                    var s = localStorage[a].split(',');
+                    $('#sign-in .modal-content').append('<div class="chip"><img src="'+s[0]+'" alt="Person Liked">'+s[1]+'</div>');
+                }
+            }
+        }
+    }); 
 });
+
+function onSignIn(googleUser) {
+    var isLike = true;
+    var profile = googleUser.getBasicProfile();
+    //console.log('ID: ' + profile.getId());
+    //console.log('Name: ' + profile.getName());
+    //console.log('Image URL: ' + profile.getImageUrl());
+    //console.log('Email: ' + profile.getEmail());
+
+    if(localStorage.length != 0 ){
+        var s = ''
+        for(var a=0,b=localStorage.length;a<b;a++){
+            s+=localStorage[a];
+        }
+        if(s.split(profile.getName()).length > 0){
+            isLike = false;
+        }
+    }
+    if(isLike){
+        var obj = profile.getImageUrl()+','+profile.getName();
+        localStorage.setItem(localStorage.length, obj);
+
+        setTimeout(function(){
+            var arrData = localStorage[localStorage.length-1].split(',');
+            $('#sign-in .modal-content').append('<div class="chip"><img src="'+arrData[0]+'" alt="Person Liked">'+arrData[1]+'</div>');
+        },1000);
+
+        $('#likes').text(localStorage.length+' Likes ');
+    }
+}
 
 function resume(){
     
@@ -161,44 +201,31 @@ function barChart() {
     */
 }
 
-function sendEmail() {
-    
+function sendEmail(){
     $('#send-button').addClass('disabled');
+    var accessToken = 'ya29.Ci9SAy3vKQwI3hRRKTpxkn_851pgK6yCfpTHHKkDUrEvvSIOMYLc7wjWHc8ugGrTPQ';
+    
+    var encodedMail = btoa([
+        'From: ' + $('#compose-to').val() + '\r\n',
+        'To: geraldcarreon24@gmail.com\r\n',
+        'Subject: ' + $('#compose-subject').val() + ' - ' + $('#compose-to').val() + '\r\n\r\n',
 
-    sendMessage(
-    {
-        'To': $('#compose-to').val(),
-        'Subject': $('#compose-subject').val()
-    },
-    $('#compose-message').val(),
-    composeTidy
-  );
+        '' + $('#compose-message').val() + ''
+    ].join('')).replace(/\+/g, '-').replace(/\//g, '_');
 
-    return false;
-}
-
-function sendMessage(headers_obj, message, callback) {
-    var email = '';
-
-    for (var header in headers_obj)
-        email += header += ": " + headers_obj[header] + "\r\n";
-
-    email += "\r\n" + message;
-
-    var sendRequest = gapi.client.gmail.users.messages.send({
-        'userId': 'me',
-        'resource': {
-            'raw': window.btoa(email).replace(/\+/g, '-').replace(/\//g, '_')
-        }
+    $.ajax({
+        method: 'POST',
+        url: 'https://www.googleapis.com/gmail/v1/users/me/messages/send',
+        headers: {
+            'Authorization': 'Bearer ' + accessToken,
+            'Content-Type': 'application/json'
+        },
+        data: JSON.stringify({
+            'raw': encodedMail
+        })
     });
-    return sendRequest.execute(callback);
+    alert("Message Sent");
+    console.log(window.location.href);
+    window.location.href = window.location.href;
 }
-
-function composeTidy() {
-   
-    $('#compose-to').val('');
-    $('#compose-subject').val('');
-    $('#compose-message').val('');
-    $('#send-button').removeClass('disabled');
-    location.reload();
-}
+        
