@@ -225,7 +225,5 @@ function sendEmail(){
         })
     });
     alert("Message Sent");
-    console.log(window.location.href);
-    window.location.href = window.location.href;
 }
         
