@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
-    
-    localStorage.length == 1 ? $('#likes').text(localStorage.length+' Like ') : $('#likes').text(localStorage.length+' Likes ');
+    $.get("https://api.myjson.com/bins/27olo", function(data, textStatus, jqXHR) { 
+        data.length == 1 ? $('#likes').text(data.length+' Like ') : $('#likes').text(data.length+' Likes ');
+    });
     
     $('.modal-trigger').leanModal();
     $('ul.tabs').tabs();
@@ -58,13 +59,14 @@
             radarChart();
         }
         if(target == '#sign-in'){
-            if(localStorage.length != 0){
-                $('#sign-in .modal-content .chip').remove();
-                for(var a=0,b=localStorage.length;a<b;a++){
-                    var s = localStorage[a].split(',');
-                    $('#sign-in .modal-content').append('<div class="chip" style="margin:5px;"><img src="'+s[0]+'" alt="Person Liked">'+s[1]+'</div>');
+            $.get("https://api.myjson.com/bins/27olo", function(data, textStatus, jqXHR) {
+                if(data.length !=0){
+                    $('#sign-in .modal-content .chip').remove();
+                    for(var a=0,b=data.length;a<b;a++){
+                        $('#sign-in .modal-content').append('<div class="chip" style="margin:5px;"><img src="'+data[a].image+'" alt="Person Liked">'+data[a].name+'</div>');
+                    }
                 }
-            }
+            });
         }
     }); 
 });
@@ -77,26 +79,47 @@ function onSignIn(googleUser) {
     //console.log('Image URL: ' + profile.getImageUrl());
     //console.log('Email: ' + profile.getEmail());
 
-    if(localStorage.length != 0 ){
-        var s = ''
-        for(var a=0,b=localStorage.length;a<b;a++){
-            s+=localStorage[a];
-        }
-        if(s.split(profile.getName()).length > 0){
-            isLike = false;
-        }
-    }
-    if(isLike){
-        var obj = profile.getImageUrl()+','+profile.getName();
-        localStorage.setItem(localStorage.length, obj);
+    $.get("https://api.myjson.com/bins/27olo", function(data, textStatus, jqXHR) {
 
-        setTimeout(function(){
-            var arrData = localStorage[localStorage.length-1].split(',');
-            $('#sign-in .modal-content').append('<div class="chip" style="margin:5px;"><img src="'+arrData[0]+'" alt="Person Liked">'+arrData[1]+'</div>');
-        },1000);
+        if(data.length !=0){
+            for(var a=0,b=data.length;a<b;a++){
+                if(profile.getName() == data[a].name){
+                    isLike = false;
+                }
+                console.log(profile.getName()+" - "+data[a].name);
+            }
 
-        $('#likes').text(localStorage.length+' Likes ');
-    }
+            if(isLike){
+                $('#sign-in .modal-content').append('<div class="chip" style="margin:5px;"><img src="'+profile.getImageUrl()+'" alt="Person Liked">'+profile.getName()+'</div>');
+                    
+                var obj = [];
+                for(var a=0,b=data.length;a<b;a++){
+                    obj[a] = {};
+                    obj[a].name= data[a].name;
+                    obj[a].image = data[a].image;
+                }
+                var lObj = obj.length;
+                obj[lObj] = {};
+                obj[lObj].name = profile.getName();
+                obj[lObj].image = profile.getImageUrl();
+
+                var updatedData = JSON.stringify(obj);
+        
+                $.ajax({
+                    url: "https://api.myjson.com/bins/27olo",
+                    type: "PUT",
+                    data: updatedData,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data, textStatus, jqXHR) {
+                
+                    }
+                });
+
+                $('#likes').text(obj.length+' Likes ');
+            }
+        }
+    });
 }
 
 function resume(){
@@ -204,7 +227,7 @@ function barChart() {
 
 function sendEmail(){
     $('#send-button').addClass('disabled');
-    var accessToken = 'ya29.Ci9SAy3vKQwI3hRRKTpxkn_851pgK6yCfpTHHKkDUrEvvSIOMYLc7wjWHc8ugGrTPQ';
+    var accessToken = 'ya29.Ci9UA19xB_ve738gjJKfN0qVOUxt0lFWHReCxF-o6diSjPNJkbTy73SVjpMek7NOrQ';
     
     var encodedMail = btoa([
         'From: ' + $('#compose-to').val() + '\r\n',
